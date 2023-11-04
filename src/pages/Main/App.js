@@ -16,22 +16,26 @@ function App() {
           <img id='logo' src={Logo} alt='' />
           <Usuario nome="Luiz" />
         </header>
+        <hr />
         <main>
-          <h2>The best play list</h2>
-          <div className='musicCards'>
-            <ul>
-              {musics.map(music =>
-                <section className='musicCard'>
-                  <MusicCard
-                    id={music.id}
-                    cover={music.cover}
-                    title={music.title}
-                    description={music.description}
-                    url={music.url}
-                  />
-                </section>
-              )}
-            </ul>
+          <div className='container-musicCards'>
+            <h2>The best play list</h2>
+            <hr />
+            <div className='musicCards'>
+              <ul>
+                {musics.map(music =>
+                  <section className='musicCard'>
+                    <MusicCard
+                      id={music.id}
+                      cover={music.cover}
+                      title={music.title}
+                      description={music.description}
+                      url={music.url}
+                    />
+                  </section>
+                )}
+              </ul>
+            </div>
           </div>
         </main>
         <section className='player'>

@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { SiteContext } from "../../context/site/context"
 import { musics } from "../../musics";
+import './styles.css'
 
 
 export function MusicCard({ id, title, description, cover, url }) {
@@ -26,12 +27,12 @@ export function MusicCard({ id, title, description, cover, url }) {
     }
 
     return (
-        <div id={id} >
+        <div id={id} className="musicCard">
             <li>
-                <button onClick={() => PlayPause()} alt="album cover button">
+                <div onClick={() => PlayPause()} alt="album cover button">
                     <img src={cover} alt="Imagem do album" />
 
-                </button>
+                </div>
                 <h3>{title}</h3>
 
                 <p>{description}</p>
