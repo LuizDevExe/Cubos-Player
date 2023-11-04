@@ -1,0 +1,133 @@
+import React, { useContext } from "react";
+import { SiteContext } from "../../context/site/context";
+import Stop from '../../assets/stop.svg'
+import Prev from '../../assets/previous.svg'
+import Play from '../../assets/play.svg'
+import Pause from '../../assets/pause.svg'
+import Next from '../../assets/next.svg'
+import { musics } from "../../musics";
+
+function AudioPlayer() {
+
+    const { siteState, setSiteState, audioPlayer } = useContext(SiteContext);
+    const { url, tocando,tittle,artist } = siteState;
+
+
+    const PlayPause = () => {
+        setSiteState((prev) => ({
+            ...prev,
+            tocando:!tocando,
+        }));
+        if (!tocando) {
+            audioPlayer.current.play();
+        } else {
+            audioPlayer.current.pause();
+        }
+    
+    }
+
+    const stop = () => {
+        if (tocando) {
+            audioPlayer.current.pause()
+            audioPlayer.current.currentTime = 0;
+            setSiteState((prev) => ({
+                ...prev,
+                tocando: false,
+            }));
+         
+        }
+    }
+
+    async function prev() {
+        audioPlayer.current.pause();
+        let music = musics.find(e => e.url === url);
+        if (music.id !== 1) {
+            let prevMusic = musics.find(e => e.id === music.id - 1);
+            let indexMusic = musics.findIndex(i => i.url === url);
+            let tittleMusic = musics[indexMusic -1].title;
+            let artistMusic = musics[indexMusic -1].artist;
+            await setSiteState((prev) => ({
+                ...prev,
+                url: prevMusic.url,
+                tittle:tittleMusic,
+                artist: artistMusic,
+                tocando: true
+            }))
+
+            
+
+            audioPlayer.current.currentTime = 0;
+            audioPlayer.current.play();
+
+        } else{
+            await setSiteState((prev) => ({
+                ...prev,
+                tocando: false
+            }))
+        }
+        
+    }
+
+    async function next() {
+        audioPlayer.current.pause();
+        let music = musics.find(e => e.url === url);
+
+        if (music.id !== musics.length) {
+            let nextMusic = musics.find(e => e.id === music.id + 1);
+            let indexMusic = musics.findIndex(i => i.url === url);
+            let tittleMusic = musics[indexMusic +1].title;
+            let artistMusic = musics[indexMusic +1].artist;
+            await setSiteState((prev) => ({
+                ...prev,
+                url: nextMusic.url,
+                artist: artistMusic,
+                tittle:tittleMusic,
+                tocando: true
+            }))
+            audioPlayer.current.currentTime = 0;
+            audioPlayer.current.play();
+
+        }else{
+            await setSiteState((prev) => ({
+                ...prev,
+                tocando: !tocando
+            }))
+        }
+    }
+
+    return (
+
+        <div className="player" >
+            <audio ref={audioPlayer} src={url ? url : 'https://storage.googleapis.com/pedagogico/frontend-files/aula-react-referencias-eventos/The%20Von%20Trapp%20Family%20Choir%20-%20Alge.mp3'} />
+
+            <div className="player">
+                <div className="artistTag">
+                    <h2>{tittle}</h2>
+                    <h3>{artist}</h3>
+                </div>
+                <div className="mediaControl">
+                    <div className="botoes">
+                        <button onClick={stop}>
+                            <img src={Stop} alt="botão stop" />
+                        </button>
+                        <button onClick={prev}>
+                            <img src={Prev} alt="botão previo" />
+                        </button>
+                        <button onClick={PlayPause}>
+                            {tocando ? <img src={Pause} alt="botão pause" /> : <img src={Play} alt="botão play" />}
+                        </button>
+                        <button onClick={next}>
+                            <img src={Next} alt="botão next" />
+                        </button>
+                    </div>
+                    <div className="tempo_musica">
+                        {/*tempo atual*/}
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export { AudioPlayer }

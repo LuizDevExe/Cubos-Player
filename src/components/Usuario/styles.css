@@ -1,0 +1,18 @@
+.container-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 11.4375rem;
+    height: 2.5rem;
+}
+
+
+.container-user img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2.5rem;
+    border: 2px solid #6A6363;
+}
+
+.container-user {}
