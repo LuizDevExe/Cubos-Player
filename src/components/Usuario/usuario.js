@@ -1,5 +1,5 @@
-import FotoUsuario from '../../assets/profile.jpg'
-import './styles.css'
+import FotoUsuario from '../../assets/profile.jpg';
+import './styles.css';
 
 
 function AreaUsuario({nome}){

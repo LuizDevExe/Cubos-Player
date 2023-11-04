@@ -1,0 +1,51 @@
+.player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    border-top: 2px solid rgba(0, 0, 0, 0.21);
+    background: linear-gradient(180deg, #383535 0%, rgba(133, 130, 130, 0.00) 100%);
+}
+
+.artistTag {
+    position: absolute;
+    left: 2rem;
+    bottom: 3.5rem;
+}
+
+.artistTag h2 {
+    margin-bottom: .5rem;
+
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    color: #FFF;
+}
+
+.artistTag h3 {
+    font-family: Roboto;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    color: #FFF;
+}
+
+.botoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+}
+
+.botoes div:hover{
+    transform: scale(1.05);
+    opacity: 0.8;
+}

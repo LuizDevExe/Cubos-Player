@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { SiteContext } from "../../context/site/context";
-import Stop from '../../assets/stop.svg'
-import Prev from '../../assets/previous.svg'
-import Play from '../../assets/play.svg'
-import Pause from '../../assets/pause.svg'
-import Next from '../../assets/next.svg'
+import Stop from '../../assets/stop.svg';
+import Prev from '../../assets/previous.svg';
+import Play from '../../assets/play.svg';
+import Pause from '../../assets/pause.svg';
+import Next from '../../assets/next.svg';
 import { musics } from "../../musics";
+import './styles.css'
 
 function AudioPlayer() {
 
@@ -107,18 +108,18 @@ function AudioPlayer() {
                 </div>
                 <div className="mediaControl">
                     <div className="botoes">
-                        <button onClick={stop}>
+                        <div onClick={stop}>
                             <img src={Stop} alt="botão stop" />
-                        </button>
-                        <button onClick={prev}>
+                        </div>
+                        <div onClick={prev}>
                             <img src={Prev} alt="botão previo" />
-                        </button>
-                        <button onClick={PlayPause}>
+                        </div>
+                        <div onClick={PlayPause}>
                             {tocando ? <img src={Pause} alt="botão pause" /> : <img src={Play} alt="botão play" />}
-                        </button>
-                        <button onClick={next}>
+                        </div>
+                        <div onClick={next}>
                             <img src={Next} alt="botão next" />
-                        </button>
+                        </div>
                     </div>
                     <div className="tempo_musica">
                         {/*tempo atual*/}

@@ -8,6 +8,11 @@
     list-style: none;
 }
 
+.musicCard:hover{
+    transform: scale(1.05);
+}
+
+
 
 .musicCard img {
     width: 16.25rem;

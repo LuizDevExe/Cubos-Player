@@ -1,7 +1,7 @@
-import { useContext } from "react"
-import { SiteContext } from "../../context/site/context"
+import { useContext } from "react";
+import { SiteContext } from "../../context/site/context";
 import { musics } from "../../musics";
-import './styles.css'
+import './styles.css';
 
 
 export function MusicCard({ id, title, description, cover, url }) {
