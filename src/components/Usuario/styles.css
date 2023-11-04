@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: .5rem;
 
     width: 11.4375rem;
     height: 2.5rem;
@@ -15,4 +16,12 @@
     border: 2px solid #6A6363;
 }
 
-.container-user {}
+.container-user h4 {
+    font-family: Roboto;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    color: #FFF;
+}
