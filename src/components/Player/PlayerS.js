@@ -16,7 +16,19 @@ function AudioPlayer() {
     const [width, setWidth] = useState("80%");
 
 
+
+
     const PlayPause = () => {
+        if (musics.findIndex(i => i.url === url) == -1) {
+
+            setSiteState((prev) => ({
+                ...prev,
+                tittle: "Violão Acústico",
+                artist: 'Mayer Bronkx',
+            }))
+        }
+
+
 
         setInterval(() => {
             const duration = audioPlayer.current.duration / 60;
@@ -33,6 +45,7 @@ function AudioPlayer() {
             ...prev,
             tocando: !tocando,
         }));
+
         if (!tocando) {
             audioPlayer.current.play();
         } else {
@@ -47,6 +60,7 @@ function AudioPlayer() {
             audioPlayer.current.currentTime = 0;
             setSiteState((prev) => ({
                 ...prev,
+
                 tocando: false,
             }));
 
