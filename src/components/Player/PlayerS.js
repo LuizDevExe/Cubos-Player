@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { SiteContext } from "../../context/site/context";
 import Stop from '../../assets/stop.svg';
 import Prev from '../../assets/previous.svg';
@@ -11,20 +11,34 @@ import './styles.css'
 function AudioPlayer() {
 
     const { siteState, setSiteState, audioPlayer } = useContext(SiteContext);
-    const { url, tocando,tittle,artist } = siteState;
+    const { url, tocando, tittle, artist, progress } = siteState;
+
+    const [width, setWidth] = useState("80%");
 
 
     const PlayPause = () => {
+
+        setInterval(() => {
+            const duration = audioPlayer.current.duration / 60;
+
+            const currentProgress = ((audioPlayer.current.currentTime / 60) * 100) / duration;
+
+            setSiteState((prev) => ({
+                ...prev,
+                progress: currentProgress,
+            }))
+        }, 1000);
+
         setSiteState((prev) => ({
             ...prev,
-            tocando:!tocando,
+            tocando: !tocando,
         }));
         if (!tocando) {
             audioPlayer.current.play();
         } else {
             audioPlayer.current.pause();
         }
-    
+
     }
 
     const stop = () => {
@@ -35,9 +49,11 @@ function AudioPlayer() {
                 ...prev,
                 tocando: false,
             }));
-         
+
         }
     }
+
+
 
     async function prev() {
         audioPlayer.current.pause();
@@ -45,28 +61,29 @@ function AudioPlayer() {
         if (music.id !== 1) {
             let prevMusic = musics.find(e => e.id === music.id - 1);
             let indexMusic = musics.findIndex(i => i.url === url);
-            let tittleMusic = musics[indexMusic -1].title;
-            let artistMusic = musics[indexMusic -1].artist;
+            let tittleMusic = musics[indexMusic - 1].title;
+            let artistMusic = musics[indexMusic - 1].artist;
+
             await setSiteState((prev) => ({
                 ...prev,
                 url: prevMusic.url,
-                tittle:tittleMusic,
+                tittle: tittleMusic,
                 artist: artistMusic,
                 tocando: true
             }))
 
-            
+
 
             audioPlayer.current.currentTime = 0;
             audioPlayer.current.play();
 
-        } else{
+        } else {
             await setSiteState((prev) => ({
                 ...prev,
                 tocando: false
             }))
         }
-        
+
     }
 
     async function next() {
@@ -76,19 +93,19 @@ function AudioPlayer() {
         if (music.id !== musics.length) {
             let nextMusic = musics.find(e => e.id === music.id + 1);
             let indexMusic = musics.findIndex(i => i.url === url);
-            let tittleMusic = musics[indexMusic +1].title;
-            let artistMusic = musics[indexMusic +1].artist;
+            let tittleMusic = musics[indexMusic + 1].title;
+            let artistMusic = musics[indexMusic + 1].artist;
             await setSiteState((prev) => ({
                 ...prev,
                 url: nextMusic.url,
                 artist: artistMusic,
-                tittle:tittleMusic,
+                tittle: tittleMusic,
                 tocando: true
             }))
             audioPlayer.current.currentTime = 0;
             audioPlayer.current.play();
 
-        }else{
+        } else {
             await setSiteState((prev) => ({
                 ...prev,
                 tocando: !tocando
@@ -122,8 +139,16 @@ function AudioPlayer() {
                         </div>
                     </div>
                     <div className="tempo_musica">
-                        {/*tempo atual*/}
-                       
+                        <strong className="comeco">0</strong>
+                        <div className="container-barra-progresso">
+                            <div className="barra-progresso"></div>
+                            <div
+                                className="cor-barra-progresso"
+                                style={{ width: `${progress}%` }}
+                            >
+                            </div>
+                        </div>
+                        <strong className="final">3:45</strong>
                     </div>
                 </div>
             </div>

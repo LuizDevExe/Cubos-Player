@@ -5,6 +5,7 @@ const defaultValue = {
     tocando: false,
     artist: "",
     tittle: "",
+    duation: 0,
     idIndex: 0
 }
 

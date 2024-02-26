@@ -8,20 +8,36 @@ export function MusicCard({ id, title, description, cover, url }) {
 
     const { setSiteState } = useContext(SiteContext);
     const { audioPlayer } = useContext(SiteContext);
-    
+
     async function PlayPause() {
+
+        setInterval(() => {
+            const duration = audioPlayer.current.duration / 60;
+
+            const currentProgress = ((audioPlayer.current.currentTime / 60) * 100) / duration;
+
+            setSiteState((prev) => ({
+                ...prev,
+                progress: currentProgress,
+            }))
+
+        }, 1000);
+
+
+
         let indexMusic = musics.findIndex(i => i.url === url);
         let tittleMusic = musics[indexMusic].title;
         let artistMusic = musics[indexMusic].artist;
+
         await setSiteState((prev) => ({
             ...prev,
             url,
             tocando: true,
             idIndex: indexMusic,
             tittle: tittleMusic,
-            artist: artistMusic
+            artist: artistMusic,
         }))
-        
+
         audioPlayer.current.play();
 
     }

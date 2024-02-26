@@ -45,7 +45,41 @@
     gap: 2.5rem;
 }
 
-.botoes div:hover{
+.botoes div:hover {
     transform: scale(1.05);
     opacity: 0.8;
+}
+
+.tempo_musica {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    border-radius: 30px;
+
+    margin-top: 1rem;
+
+    font-family: Roboto;
+
+    color: #c3c3c3;
+
+}
+
+.container-barra-progresso {
+    width: 40vw;
+}
+
+.barra-progresso {
+    border-bottom: 4px solid #c3c3c3;
+    border-radius: 30px;
+}
+
+.cor-barra-progresso {
+    border-bottom: 4px solid #e5007b;
+    border-radius: 30px;
+    position: relative;
+    top: -4px;
+    left: 0;
+
+    width: 50px;
 }
