@@ -153,7 +153,6 @@ function AudioPlayer() {
                         </div>
                     </div>
                     <div className="tempo_musica">
-                        <strong className="comeco">0</strong>
                         <div className="container-barra-progresso">
                             <div className="barra-progresso"></div>
                             <div
@@ -162,7 +161,6 @@ function AudioPlayer() {
                             >
                             </div>
                         </div>
-                        <strong className="final">3:45</strong>
                     </div>
                 </div>
             </div>
