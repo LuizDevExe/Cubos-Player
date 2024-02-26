@@ -29,16 +29,20 @@ function AudioPlayer() {
         }
 
 
-
         setInterval(() => {
             const duration = audioPlayer.current.duration / 60;
-
+            const durationInSec = audioPlayer.current.duration
             const currentProgress = ((audioPlayer.current.currentTime / 60) * 100) / duration;
 
             setSiteState((prev) => ({
                 ...prev,
                 progress: currentProgress,
             }))
+
+            if(currentProgress > 99.98){
+                next()
+            }
+
         }, 1000);
 
         setSiteState((prev) => ({
